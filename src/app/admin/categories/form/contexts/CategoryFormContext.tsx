@@ -17,6 +17,7 @@ export default function CategoryFormContextProvider({ children }) {
   const [image, setImage] = useState(null);
 
   const handleData = (key, value) => {
+    setIsDone(false);
     setData({
       ...data,
       [key]: value,
@@ -29,9 +30,6 @@ export default function CategoryFormContextProvider({ children }) {
     setIsDone(false);
 
     try {
-      //TODO: Add data to firebase firestore
-
-      //TODO: image store in firebase storage
       await createNewCategory({ data: data, image: image });
       setIsDone(true);
     } catch (error) {

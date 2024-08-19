@@ -82,13 +82,21 @@ const page = () => {
               required
             />
           </div>
-          <button
-            type="submit"
-            disabled={isLoading || isDone}
-            className="bg-blue-500 rounded-full px-4 py-2  text-white"
-          >
-            {isLoading ? "Loading..." : "Create"}
-          </button>
+          {error && <p className="text-red-500 text-sm">{error}</p>}
+          {!isDone && (
+            <button
+              type="submit"
+              disabled={isLoading || isDone}
+              className="bg-blue-500 rounded-full px-4 py-2  text-white"
+            >
+              {isLoading ? "Loading..." : "Create"}
+            </button>
+          )}
+          {isDone && (
+            <h3 className="text-green-500 font-bold text-center">
+              Successfully Created!
+            </h3>
+          )}
         </form>
       </section>
     </main>
