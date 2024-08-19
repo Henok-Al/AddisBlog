@@ -1,5 +1,6 @@
 "use client";
 
+import { createNewCategory } from "@/lib/firebase/category/write";
 import { createContext, ReactNode, useContext, useState } from "react";
 
 const CategoryFormContext = createContext();
@@ -29,8 +30,10 @@ export default function CategoryFormContextProvider({ children }) {
 
     try {
       //TODO: Add data to firebase firestore
+
       //TODO: image store in firebase storage
-      setIsDone(false);
+      await createNewCategory({ data: data, image: image });
+      setIsDone(true);
     } catch (error) {
       setError(error?.message);
     }

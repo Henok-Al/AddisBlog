@@ -84,9 +84,10 @@ const page = () => {
           </div>
           <button
             type="submit"
+            disabled={isLoading || isDone}
             className="bg-blue-500 rounded-full px-4 py-2  text-white"
           >
-            Create
+            {isLoading ? "Loading..." : "Create"}
           </button>
         </form>
       </section>
