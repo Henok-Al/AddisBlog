@@ -1,6 +1,20 @@
 "use client";
 
+import Image from "next/image";
+import { useCategoryForm } from "./contexts/CategoryFormContext";
+
 const page = () => {
+  const {
+    data,
+    isLoading,
+    error,
+    isDone,
+    handleCreate,
+    handleData,
+    image,
+    setImage,
+  } = useCategoryForm();
+
   return (
     <main className="w-full p-6 flex  flex-col gap-3">
       <h1 className="font-bold">Category | Form</h1>
@@ -8,6 +22,7 @@ const page = () => {
         <form
           onSubmit={(e) => {
             e.preventDefault();
+            handleCreate();
           }}
           className="flex flex-col gap-2 bg-blue-50 rounded-xl p-7"
         >
@@ -19,6 +34,10 @@ const page = () => {
               className="px-4 py-2 rounded-md border bg-gray-50"
               placeholder="Enter Category Name"
               type="text"
+              onChange={(e) => {
+                handleData("name", e.target.value);
+              }}
+              value={data?.name}
               required
             />
           </div>
@@ -30,9 +49,23 @@ const page = () => {
               className="px-4 py-2 rounded-md border bg-gray-50"
               placeholder="Enter Category Slug"
               type="text"
+              onChange={(e) => {
+                handleData("slug", e.target.value);
+              }}
+              value={data?.slug}
               required
             />
           </div>
+          {image && (
+            <div>
+              <Image
+                width={300}
+                height={100}
+                src={URL.createObjectURL(image)}
+                alt="image"
+              />
+            </div>
+          )}
           <div className="flex flex-col gap-2">
             <label className="text-sm text-gray-500">
               Image <span className="text-red-500 text-sm">*</span>
@@ -44,11 +77,17 @@ const page = () => {
               accept="image/*"
               onChange={(e) => {
                 e.preventDefault();
+                setImage(e.target.files[0]);
               }}
               required
             />
           </div>
-          <button className="bg-blue-500 rounded-full px-4 py-2  text-white"></button>
+          <button
+            type="submit"
+            className="bg-blue-500 rounded-full px-4 py-2  text-white"
+          >
+            Create
+          </button>
         </form>
       </section>
     </main>

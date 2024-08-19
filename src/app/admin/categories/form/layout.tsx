@@ -1,6 +1,9 @@
 import { ReactNode } from "react";
 import CategoryFormContextProvider from "./contexts/CategoryFormContext";
 
-export default function Layout(children: ReactNode) {
+interface CategoryFormLayoutProps {
+  children: ReactNode;
+}
+export default function Layout({ children }: CategoryFormLayoutProps) {
   return <CategoryFormContextProvider>{children}</CategoryFormContextProvider>;
 }
