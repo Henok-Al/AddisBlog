@@ -1,10 +1,10 @@
-import React from "react";
 import Link from "next/link";
 import { CirclePlus } from "lucide-react";
+import CategoriesListView from "./components/CategoriesListView";
 
 const page = () => {
   return (
-    <main className="p-6 w-full">
+    <main className="p-6 w-full flex flex-col gap-6">
       <div className="flex justify-between items-center">
         <h1 className="font-bold">Categories</h1>
         <Link href={"/admin/categories/form"}>
@@ -14,6 +14,7 @@ const page = () => {
           </button>
         </Link>
       </div>
+      <CategoriesListView />
     </main>
   );
 };
