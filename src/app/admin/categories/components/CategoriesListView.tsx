@@ -2,6 +2,7 @@
 
 import { useCategories } from "@/lib/firebase/category/read";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function CategoriesListView() {
   const { data, error, isLoading } = useCategories();
@@ -42,9 +43,11 @@ export default function CategoriesListView() {
                 <td className="border px-4 py-2">{item?.name}</td>
                 <td className="border px-4 py-2">{item?.slug}</td>
                 <td className="border px-4 py-2">
-                  <button className="bg-blue-500 text-white rounded-full px-3 py-1 text-sm">
-                    Action
-                  </button>
+                  <Link href={`/admin/categories/form?id={item?.id}`}>
+                    <button className="bg-blue-500 text-white rounded-full px-3 py-1 text-sm">
+                      Action
+                    </button>
+                  </Link>
                 </td>
               </tr>
             );
