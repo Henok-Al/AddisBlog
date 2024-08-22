@@ -3,8 +3,10 @@
 import { getCategory } from "@/lib/firebase/category/read";
 import {
   createNewCategory,
+  deleteCategory,
   updateCategory,
 } from "@/lib/firebase/category/write";
+import { useRouter } from "next/navigation";
 import { createContext, ReactNode, useContext, useState } from "react";
 import { FaBedPulse } from "react-icons/fa6";
 
@@ -23,6 +25,8 @@ export default function CategoryFormContextProvider({
   const [isDone, setIsDone] = useState(false);
   const [image, setImage] = useState(null);
 
+  const router = useRouter();
+
   const handleData = (key, value) => {
     setIsDone(false);
     setData({
@@ -31,6 +35,7 @@ export default function CategoryFormContextProvider({
     });
   };
 
+  //create
   const handleCreate = async () => {
     setError(null);
     setIsloading(true);
@@ -45,6 +50,7 @@ export default function CategoryFormContextProvider({
     setIsloading(false);
   };
 
+  //update
   const handleUpdate = async () => {
     setError(null);
     setIsloading(true);
@@ -53,6 +59,22 @@ export default function CategoryFormContextProvider({
     try {
       await updateCategory({ data: data, image: image });
       setIsDone(true);
+    } catch (error) {
+      setError(error?.message);
+    }
+    setIsloading(false);
+  };
+
+  //delete
+  const handleDelete = async (id) => {
+    setError(null);
+    setIsloading(true);
+    setIsDone(false);
+
+    try {
+      await deleteCategory(id);
+      setIsDone(true);
+      router.push("/admin/categories");
     } catch (error) {
       setError(error?.message);
     }
@@ -87,6 +109,7 @@ export default function CategoryFormContextProvider({
         setImage,
         handleCreate,
         handleUpdate,
+        handleDelete,
         handleData,
         fetchData,
       }}

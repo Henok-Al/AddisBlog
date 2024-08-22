@@ -1,7 +1,13 @@
 // Create New Category
 
 import { db, storage } from "@/lib/firebase";
-import { Timestamp, doc, setDoc, updateDoc } from "firebase/firestore";
+import {
+  Timestamp,
+  deleteDoc,
+  doc,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 //create category
@@ -52,4 +58,12 @@ export const updateCategory = async ({ data, image }) => {
     iconURL: imageURL,
     timestamp: Timestamp.now(),
   });
+};
+
+//create category
+export const deleteCategory = async (id) => {
+  if (!id) {
+    throw new Error("Id is required");
+  }
+  await deleteDoc(doc(db, `categories/${id}`));
 };

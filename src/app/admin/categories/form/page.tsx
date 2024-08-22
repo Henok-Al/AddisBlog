@@ -17,6 +17,7 @@ const Page = () => {
     isDone,
     handleCreate,
     handleUpdate,
+    handleDelete,
     handleData,
     image,
     setImage,
@@ -136,6 +137,21 @@ const Page = () => {
                 : "Create"}
             </button>
           )}
+
+          {updateCategoryId && !isDone && (
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                handleDelete(updateCategoryId);
+              }}
+              type="submit"
+              disabled={isLoading || isDone}
+              className="bg-red-500 rounded-full px-4 py-2 text-white"
+            >
+              {isLoading ? "Loading..." : "delete"}
+            </button>
+          )}
+
           {isDone && (
             <h3 className="text-green-500 font-bold text-center">
               Successfully {updateCategoryId ? "Updated" : "Created"}!
