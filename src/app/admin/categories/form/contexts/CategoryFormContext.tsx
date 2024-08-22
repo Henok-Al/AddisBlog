@@ -1,15 +1,22 @@
 "use client";
 
-import { createNewCategory } from "@/lib/firebase/category/write";
+import { getCategory } from "@/lib/firebase/category/read";
+import {
+  createNewCategory,
+  updateCategory,
+} from "@/lib/firebase/category/write";
 import { createContext, ReactNode, useContext, useState } from "react";
+import { FaBedPulse } from "react-icons/fa6";
 
 const CategoryFormContext = createContext();
 
-// interface CategoryFormProps {
-//   children: ReactNode;
-// }
+interface CategoryFormProps {
+  children: ReactNode;
+}
 
-export default function CategoryFormContextProvider({ children }) {
+export default function CategoryFormContextProvider({
+  children,
+}: CategoryFormProps) {
   const [data, setData] = useState({});
   const [isLoading, setIsloading] = useState(false);
   const [error, setError] = useState(null);
@@ -38,6 +45,37 @@ export default function CategoryFormContextProvider({ children }) {
     setIsloading(false);
   };
 
+  const handleUpdate = async () => {
+    setError(null);
+    setIsloading(true);
+    setIsDone(false);
+
+    try {
+      await updateCategory({ data: data, image: image });
+      setIsDone(true);
+    } catch (error) {
+      setError(error?.message);
+    }
+    setIsloading(false);
+  };
+
+  const fetchData = async (id) => {
+    setError(null);
+    setIsloading(true);
+    setIsDone(false);
+    try {
+      const res = await getCategory(id);
+      if (res.exists()) {
+        setData(res.data());
+      } else {
+        throw new Error(`No Category found from id ${id}`);
+      }
+    } catch (error) {
+      setError(error?.message);
+    }
+    setIsloading(false);
+  };
+
   return (
     <CategoryFormContext.Provider
       value={{
@@ -48,7 +86,9 @@ export default function CategoryFormContextProvider({ children }) {
         image,
         setImage,
         handleCreate,
+        handleUpdate,
         handleData,
+        fetchData,
       }}
     >
       {children}

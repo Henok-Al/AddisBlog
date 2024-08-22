@@ -1,7 +1,7 @@
 "use client";
 
 import { db } from "@/lib/firebase";
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, doc, getDoc, onSnapshot } from "firebase/firestore";
 import useSWRSubscription from "swr/subscription";
 
 export function useCategories() {
@@ -33,3 +33,7 @@ export function useCategories() {
     isLoading: data === undefined ? true : false,
   };
 }
+
+export const getCategory = async (id) => {
+  return await getDoc(doc(db, `categories/${id}`));
+};

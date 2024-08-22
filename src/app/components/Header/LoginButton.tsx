@@ -48,7 +48,7 @@ const LoginButton = () => {
       className="hidden md:flex bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full items-center justify-center space-x-2 transition duration-300 ease-in-out"
     >
       <BsGoogle className="text-xl" />
-      <span>Login With Google</span>
+      <span>Login</span>
     </button>
   );
 };
