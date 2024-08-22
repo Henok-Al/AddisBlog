@@ -36,7 +36,7 @@ export default function CategoriesListView() {
                   <Image
                     src={item?.iconURL}
                     width={50}
-                    height={10}
+                    height={40}
                     alt="Picture of the author"
                   />
                 </td>
