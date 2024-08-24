@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { usePostForm } from "./contexts/PostFormContext";
+import { useCategories } from "@/lib/firebase/category/read";
+import { useAuthors } from "@/lib/firebase/author/read";
 
 const Page = () => {
   // Get id from search params
@@ -93,9 +95,17 @@ const Page = () => {
               required
             />
           </div>
+          <SelectCategoryField />
+          <SelectAuthorField />
+
           {data?.imageURL && (
             <div>
-              <Image width={300} height={100} src={data?.imageURL} alt="image" />
+              <Image
+                width={300}
+                height={100}
+                src={data?.imageURL}
+                alt="image"
+              />
             </div>
           )}
           {image && (
@@ -131,11 +141,7 @@ const Page = () => {
               disabled={isLoading || isDone}
               className="bg-blue-500 rounded-full px-4 py-2 text-white"
             >
-              {isLoading
-                ? "Loading..."
-                : updatePostId
-                ? "Update"
-                : "Create"}
+              {isLoading ? "Loading..." : updatePostId ? "Update" : "Create"}
             </button>
           )}
 
@@ -165,3 +171,59 @@ const Page = () => {
 };
 
 export default Page;
+
+function SelectCategoryField() {
+  const { data, handleData } = usePostForm();
+  const { data: categories } = useCategories();
+  return (
+    <div className="flex flex-col gap-2">
+      <label className="text-sm text-gray-500">
+        Category <span className="text-red-500">*</span>{" "}
+      </label>
+      <select
+        className="px-4 py-2 rounded-full border bg-gray-50"
+        name="category"
+        id="category"
+        value={data?.categoryId}
+        onChange={(e) => {
+          handleData("categoryId", e.target.value);
+        }}
+        required
+      >
+        <option value="">Select Category</option>
+        {categories &&
+          categories?.map((item) => {
+            return <option value={item?.id}>{item?.name}</option>;
+          })}
+      </select>
+    </div>
+  );
+}
+
+function SelectAuthorField() {
+  const { data, handleData } = usePostForm();
+  const { data: authors } = useAuthors();
+  return (
+    <div className="flex flex-col gap-2">
+      <label className="text-sm text-gray-500">
+        Authors <span className="text-red-500">*</span>{" "}
+      </label>
+      <select
+        className="px-4 py-2 rounded-full border bg-gray-50"
+        name="authorId"
+        id="authorId"
+        value={data?.authorId}
+        onChange={(e) => {
+          handleData("authorId", e.target.value);
+        }}
+        required
+      >
+        <option value="">Select Author</option>
+        {authors &&
+          authors?.map((item) => {
+            return <option value={item?.id}>{item?.name}</option>;
+          })}
+      </select>
+    </div>
+  );
+}
