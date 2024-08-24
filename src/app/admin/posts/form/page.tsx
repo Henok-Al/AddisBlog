@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { usePostForm } from "./contexts/PostFormContext";
 import { useCategories } from "@/lib/firebase/category/read";
 import { useAuthors } from "@/lib/firebase/author/read";
+import { RTEField } from "./components/RTEField";
 
 const Page = () => {
   // Get id from search params
@@ -165,6 +166,7 @@ const Page = () => {
             </h3>
           )}
         </form>
+        <RTEField />
       </section>
     </main>
   );

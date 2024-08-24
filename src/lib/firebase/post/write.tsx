@@ -1,5 +1,3 @@
-// Create New Post
-
 import { db, storage } from "@/lib/firebase";
 import {
   Timestamp,
@@ -10,9 +8,8 @@ import {
 } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
-//create Post
 export const createNewPost = async ({ data, image }) => {
-  if (!data?.name) {
+  if (!data?.title) {
     throw new Error("Name is undefined");
   }
   if (!data?.slug) {
@@ -21,8 +18,7 @@ export const createNewPost = async ({ data, image }) => {
   if (!image) {
     throw new Error("Image is not selected");
   }
-
-  const imageRef = ref(storage, `posts/${data?.slug}`);
+  const imageRef = ref(storage, `posts/${data?.slug}.png`);
   await uploadBytes(imageRef, image);
   const imageURL = await getDownloadURL(imageRef);
 
@@ -35,9 +31,8 @@ export const createNewPost = async ({ data, image }) => {
   });
 };
 
-//update Post
 export const updatePost = async ({ data, image }) => {
-  if (!data?.name) {
+  if (!data?.title) {
     throw new Error("Name is undefined");
   }
   if (!data?.slug) {
@@ -60,7 +55,6 @@ export const updatePost = async ({ data, image }) => {
   });
 };
 
-//create Post
 export const deletePost = async (id) => {
   if (!id) {
     throw new Error("Id is required");

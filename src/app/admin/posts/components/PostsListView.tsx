@@ -21,8 +21,8 @@ export default function PostsListView() {
         <thead>
           <tr>
             <th className="border px-4 py-2 bg-blue-50">Sr.</th>
-            <th className="border px-4 py-2 bg-blue-50">Icon</th>
-            <th className="border px-4 py-2 bg-blue-50">Name</th>
+            <th className="border px-4 py-2 bg-blue-50">Image</th>
+            <th className="border px-4 py-2 bg-blue-50">Title</th>
             <th className="border px-4 py-2 bg-blue-50">Slug</th>
             <th className="border px-4 py-2 bg-blue-50">Action</th>
           </tr>
@@ -40,7 +40,7 @@ export default function PostsListView() {
                     alt="Picture of the author"
                   />
                 </td>
-                <td className="border px-4 py-2">{item?.name}</td>
+                <td className="border px-4 py-2">{item?.title}</td>
                 <td className="border px-4 py-2">{item?.slug}</td>
                 <td className="border px-4 py-2">
                   {/* get post id */}
