@@ -15,7 +15,7 @@ export const getAllPosts = async () => {
   );
 };
 
-//get all posts with categories
+//Get All Posts With Categories
 export const getAllPostsWithCategory = async (categoryId) => {
   const q = query(
     collection(db, "posts"),

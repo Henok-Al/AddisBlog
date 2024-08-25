@@ -2,6 +2,7 @@ import { getAuthor } from "@/lib/firebase/author/read_server";
 import { getCategory } from "@/lib/firebase/category/read_server";
 import { getPost } from "@/lib/firebase/post/read_server";
 
+//generate metadata
 export async function generateMetadata({ params }) {
     const { postId } = params;
     const post = await getPost(postId)

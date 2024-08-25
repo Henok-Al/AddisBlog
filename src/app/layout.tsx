@@ -7,7 +7,7 @@ import Header from "./components/Header/Header";
 
 export const metadata: Metadata = {
   title: "AddisBlog",
-  description: "Discover latest posts on AddisBlog",
+  description: "Discover latest blog posts on AddisBlog",
 };
 
 export default function RootLayout({
