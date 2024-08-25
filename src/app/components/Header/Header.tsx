@@ -13,18 +13,18 @@ const Header = () => {
         </span>
       </Link>
       <ul className="hidden md:flex gap-6 items-center">
-        <li className="flex items-center gap-2">
+        <Link href={"/"} className="flex items-center gap-2">
           <Home />
           HOME
-        </li>
-        <li className="flex items-center gap-2">
+        </Link>
+        <Link href={"/categories"} className="flex items-center gap-2">
           <List />
-          BLOGS
-        </li>
-        <li className="flex items-center gap-2">
+          CATEGORIES
+        </Link>
+        <Link href={"/contactus"} className="flex items-center gap-2">
           <MessageCircle />
           Contact Us
-        </li>
+        </Link>
       </ul>
       <AuthContextProvider>
         <LoginButton />

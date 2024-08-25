@@ -1,16 +1,30 @@
-import { db } from "@/lib/firebase"
-import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore"
+import { db } from "@/lib/firebase";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 
+//get all posts
 export const getAllPosts = async () => {
-    return await getDocs(collection(db, 'posts')).then((snaps) => snaps.docs.map((d) => d.data()))
-}
+  return await getDocs(collection(db, "posts")).then((snaps) =>
+    snaps.docs.map((d) => d.data())
+  );
+};
 
+//get all posts with categories
 export const getAllPostsWithCategory = async (categoryId) => {
-    const q = query(collection(db, 'posts'), where('categoryId', '==', categoryId))
-    return await getDocs(q).then((snaps) => snaps.docs.map((d) => d.data()))
-}
+  const q = query(
+    collection(db, "posts"),
+    where("categoryId", "==", categoryId)
+  );
+  return await getDocs(q).then((snaps) => snaps.docs.map((d) => d.data()));
+};
 
-
+//get single post
 export const getPost = async (id) => {
-    return await getDoc(doc(db, `posts/${id}`)).then((snap) => snap.data());
-}
+  return await getDoc(doc(db, `posts/${id}`)).then((snap) => snap.data());
+};
