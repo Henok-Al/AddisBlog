@@ -195,7 +195,11 @@ function SelectCategoryField() {
         <option value="">Select Category</option>
         {categories &&
           categories?.map((item) => {
-            return <option value={item?.id}>{item?.name}</option>;
+            return (
+              <option key={item?.id} value={item?.id}>
+                {item?.name}
+              </option>
+            );
           })}
       </select>
     </div>
@@ -223,7 +227,11 @@ function SelectAuthorField() {
         <option value="">Select Author</option>
         {authors &&
           authors?.map((item) => {
-            return <option value={item?.id}>{item?.name}</option>;
+            return (
+              <option key={item?.id} value={item?.id}>
+                {item?.name}
+              </option>
+            );
           })}
       </select>
     </div>

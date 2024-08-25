@@ -30,7 +30,7 @@ export default function CategoriesListView() {
         <tbody>
           {data?.map((item, key) => {
             return (
-              <tr>
+              <tr key={item.id}>
                 <td className="border px-4 py-2">{key + 1}</td>
                 <td className="border px-4 py-2">
                   <Image
