@@ -1,7 +1,11 @@
 import PostListView from "./components/PostListView";
 
-function Home() {
-  return <main><PostListView /></main>;
-}
+export const dynamic = "force-dynamic";
 
-export default Home;
+export default function Home() {
+  return (
+    <main>
+      <PostListView />
+    </main>
+  );
+}
