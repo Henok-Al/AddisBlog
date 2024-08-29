@@ -1,3 +1,45 @@
+// {
+//   "compilerOptions": {
+//     "lib": ["esnext"],
+//     "allowJs": true,
+//     "skipLibCheck": true,
+//     "strict": true,
+//     "noEmit": false,
+//     "esModuleInterop": true,
+//     "module": "commonjs",
+//     "moduleResolution": "node",
+//     "resolveJsonModule": true,
+//     "isolatedModules": false,
+//     "jsx": "preserve",
+//     "incremental": true,
+//     "target": "es2017",
+//     "outDir": "lib",
+//     "sourceMap": true,
+//     "plugins": []
+//   },
+//   "include": ["src"],
+//   "exclude": ["node_modules"]
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext"],

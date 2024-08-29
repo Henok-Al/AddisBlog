@@ -3,6 +3,14 @@
 import { useAuthors } from "@/lib/firebase/author/read";
 import Image from "next/image";
 import Link from "next/link";
+// import { useAuthors } from "../../../../lib/firebase/author/read";
+
+interface Author {
+  id: string;
+  photoURL: string;
+  name: string;
+  email: string;
+}
 
 export default function AuthorsListView() {
   const { data, error, isLoading } = useAuthors();
@@ -28,7 +36,7 @@ export default function AuthorsListView() {
           </tr>
         </thead>
         <tbody>
-          {data?.map((item, key) => {
+          {data?.map((item: Author, key: number) => {
             return (
               <tr key={item.id}>
                 <td className="border px-4 py-2">{key + 1}</td>
