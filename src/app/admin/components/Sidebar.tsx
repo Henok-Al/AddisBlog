@@ -18,11 +18,7 @@ const Sidebar = () => {
       link: "/admin/categories",
       icon: <Layers2 />,
     },
-    {
-      name: "Authors",
-      link: "/admin/authors",
-      icon: <User />,
-    },
+    
   ];
   return (
     <section className="w-[200px] border-r h-screen p-6">

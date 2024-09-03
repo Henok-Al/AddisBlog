@@ -1,4 +1,3 @@
-import { getAuthor } from "@/lib/firebase/author/read_server";
 import { getCategory } from "@/lib/firebase/category/read_server";
 import { getAllPosts } from "@/lib/firebase/post/read_server";
 import Link from "next/link";
@@ -40,8 +39,8 @@ export function PostCard({ post }) {
           />
         </div>
         <h1 className="font-bold">{post?.title}</h1>
+        <h1 className="font-bold">{post?.price}$</h1>
         <div className="flex justify-between">
-          <AuthorCard authorId={post?.authorId} />
           <h5 className="text-xs text-gray-500">
             {post?.timestamp?.toDate()?.toLocaleDateString()}
           </h5>
@@ -51,19 +50,7 @@ export function PostCard({ post }) {
   );
 }
 
-async function AuthorCard({ authorId }) {
-  const author = await getAuthor(authorId);
-  return (
-    <div className="flex gap-2 items-center">
-      <img
-        className="h-6 w-6 rounded-full object-cover"
-        src={author?.photoURL}
-        alt=""
-      />
-      <h4 className="text-sm text-gray-500">{author?.name}</h4>
-    </div>
-  );
-}
+
 
 async function CategoryCard({ categoryId }) {
   const category = await getCategory(categoryId);

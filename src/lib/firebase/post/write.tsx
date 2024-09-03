@@ -18,6 +18,9 @@ export const createNewPost = async ({ data, image }) => {
   if (!image) {
     throw new Error("Image is not selected");
   }
+  if (!data?.price) {
+    throw new Error("Name is undefined");
+  }
   const imageRef = ref(storage, `posts/${data?.slug}.png`);
   await uploadBytes(imageRef, image);
   const imageURL = await getDownloadURL(imageRef);
@@ -38,6 +41,11 @@ export const updatePost = async ({ data, image }) => {
   if (!data?.slug) {
     throw new Error("Slug is undefined");
   }
+
+  if (!data?.price) {
+    throw new Error("Name is undefined");
+  }
+  
   var imageURL = data?.imageURL;
 
   if (image) {
@@ -45,6 +53,7 @@ export const updatePost = async ({ data, image }) => {
     await uploadBytes(imageRef, image);
     imageURL = await getDownloadURL(imageRef);
   }
+  
 
   const firestoreRef = doc(db, `posts/${data?.id}`);
 

@@ -6,7 +6,7 @@ import AuthContextProvider from "@/lib/contexts/AuthContext";
 
 const Header = () => {
   return (
-    <nav className="flex justify-between items-center px-7 py-3 border-b">
+    <nav className="flex justify-between items-center px-7 py-2 border-b">
       <Link href="/" className="flex items-center space-x-2">
         <span className="text-2xl font-bold text-orange-500">
           Addis<span className="text-gray-800">Blog</span>

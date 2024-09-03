@@ -32,14 +32,7 @@ export default function CategoriesListView() {
             return (
               <tr key={item.id}>
                 <td className="border px-4 py-2">{key + 1}</td>
-                <td className="border px-4 py-2">
-                  <Image
-                    src={item?.iconURL}
-                    width={50}
-                    height={40}
-                    alt="Picture of the author"
-                  />
-                </td>
+                
                 <td className="border px-4 py-2">{item?.name}</td>
                 <td className="border px-4 py-2">{item?.slug}</td>
                 <td className="border px-4 py-2">

@@ -5,7 +5,6 @@ import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { usePostForm } from "./contexts/PostFormContext";
 import { useCategories } from "@/lib/firebase/category/read";
-import { useAuthors } from "@/lib/firebase/author/read";
 import { RTEField } from "./components/RTEField";
 
 const Page = () => {
@@ -82,6 +81,21 @@ const Page = () => {
           </div>
           <div className="flex flex-col gap-2">
             <label className="text-sm text-gray-500">
+              product Price <span className="text-red-500 text-sm">*</span>
+            </label>
+            <input
+              className="px-4 py-2 rounded-md border bg-gray-50"
+              placeholder="Enter post Price"
+              type="number"
+              onChange={(e) => {
+                handleData("price", e.target.value);
+              }}
+              value={data?.price || ""}
+              required
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <label className="text-sm text-gray-500">
               post Slug <span className="text-red-500 text-sm">*</span>
             </label>
             <input
@@ -97,7 +111,6 @@ const Page = () => {
             />
           </div>
           <SelectCategoryField />
-          <SelectAuthorField />
 
           {data?.imageURL && (
             <div>
@@ -195,38 +208,6 @@ function SelectCategoryField() {
         <option value="">Select Category</option>
         {categories &&
           categories?.map((item) => {
-            return (
-              <option key={item?.id} value={item?.id}>
-                {item?.name}
-              </option>
-            );
-          })}
-      </select>
-    </div>
-  );
-}
-
-function SelectAuthorField() {
-  const { data, handleData } = usePostForm();
-  const { data: authors } = useAuthors();
-  return (
-    <div className="flex flex-col gap-2">
-      <label className="text-sm text-gray-500">
-        Authors <span className="text-red-500">*</span>{" "}
-      </label>
-      <select
-        className="px-4 py-2 rounded-full border bg-gray-50"
-        name="authorId"
-        id="authorId"
-        value={data?.authorId}
-        onChange={(e) => {
-          handleData("authorId", e.target.value);
-        }}
-        required
-      >
-        <option value="">Select Author</option>
-        {authors &&
-          authors?.map((item) => {
             return (
               <option key={item?.id} value={item?.id}>
                 {item?.name}

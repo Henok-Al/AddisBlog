@@ -1,17 +1,16 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDzaVN-F2cQZG1vpvu8AarDfneTLwRNOD4",
-  authDomain: "addisblog-9aaed.firebaseapp.com",
-  projectId: "addisblog-9aaed",
-  storageBucket: "addisblog-9aaed.appspot.com",
-  messagingSenderId: "741471105726",
-  appId: "1:741471105726:web:11f15a44b52e772f4fa4ef",
-  measurementId: "G-NEV8QHDJJF",
+  apiKey: "AIzaSyB2Om0WCpZgZRvT5zWNJhfqhpS5Ampe7BY",
+  authDomain: "yebalespices-6fcc3.firebaseapp.com",
+  projectId: "yebalespices-6fcc3",
+  storageBucket: "yebalespices-6fcc3.appspot.com",
+  messagingSenderId: "558175672217",
+  appId: "1:558175672217:web:12b82532e00780d90ee508",
 };
 
 const app = initializeApp(firebaseConfig);
@@ -19,4 +18,3 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore();
 export const auth = getAuth();
 export const storage = getStorage();
-// const analytics = getAnalytics(app);

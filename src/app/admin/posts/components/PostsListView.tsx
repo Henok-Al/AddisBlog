@@ -23,6 +23,7 @@ export default function PostsListView() {
             <th className="border px-4 py-2 bg-blue-50">Sr.</th>
             <th className="border px-4 py-2 bg-blue-50">Image</th>
             <th className="border px-4 py-2 bg-blue-50">Title</th>
+            <th className="border px-4 py-2 bg-blue-50">Price</th>
             <th className="border px-4 py-2 bg-blue-50">Slug</th>
             <th className="border px-4 py-2 bg-blue-50">Action</th>
           </tr>
@@ -33,14 +34,10 @@ export default function PostsListView() {
               <tr key={item.id}>
                 <td className="border px-4 py-2">{key + 1}</td>
                 <td className="border px-4 py-2">
-                  <Image
-                    src={item?.imageURL}
-                    width={50}
-                    height={40}
-                    alt="Picture of the author"
-                  />
+                  <img className="h-10" src={item?.imageURL} alt="" />{" "}
                 </td>
                 <td className="border px-4 py-2">{item?.title}</td>
+                <td className="border px-4 py-2">{item?.price}</td>
                 <td className="border px-4 py-2">{item?.slug}</td>
                 <td className="border px-4 py-2">
                   {/* get post id */}
